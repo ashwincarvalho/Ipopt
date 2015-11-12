@@ -24,22 +24,6 @@ extern "C"
 {
 #endif
 
-  // /** Type for all number.  We need to make sure that this is
-  //     identical with what is defined in Common/IpTypes.hpp */
-  // typedef double Number;
-  //
-  // /** Type for all incides.  We need to make sure that this is
-  //     identical with what is defined in Common/IpTypes.hpp */
-  // typedef int Index;
-  //
-  // /** Type for all integers.  We need to make sure that this is
-  //     identical with what is defined in Common/IpTypes.hpp */
-  // typedef int Int;
-
-  /** Structure collecting all information about the problem
-   *  definition and solve statistics etc.  This is defined in the
-   *  source file. */
-  // struct IpoptProblemInfoStats;
   struct IpoptProblemInfoStats
   {
     Index num_iters;
@@ -50,15 +34,6 @@ extern "C"
 
   /** Pointer to a Ipopt Problem statistics */
   typedef struct IpoptProblemInfoStats* IpoptProblemStats;
-
-//   /** define a boolean type for C */
-//   typedef int Bool;
-// #ifndef TRUE
-// # define TRUE (1)
-// #endif
-// #ifndef FALSE
-// # define FALSE (0)
-// #endif
 
   IPOPT_EXPORT(IpoptProblemStats) ReturnIpoptProblemStats(IpoptProblem ipopt_problem);
 

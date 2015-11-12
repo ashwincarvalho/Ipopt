@@ -14,6 +14,7 @@
 #include "IpSolveStatistics.hpp"
 #include "IpStdCInterfaceStats.h"
 
+/* Define IpoptProblemInfo struct to avoid forward declaration errors */
 struct IpoptProblemInfo
 {
   Index n;
