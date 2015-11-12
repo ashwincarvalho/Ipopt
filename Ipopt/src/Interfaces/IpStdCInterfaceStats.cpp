@@ -52,13 +52,8 @@ IpoptProblemStats ReturnIpoptProblemStats(IpoptProblem ipopt_problem)
   return retval;
 }
 
-// void GetIpoptProblemStats(IpoptProblem ipopt_problem,
-//                           Index *num_iters,
-//                           Number *total_cpu_time,
-//                           Number *total_sys_time,
-//                           Number *total_wallclock_time,
-//                           Number *obj_val)
 void GetIpoptProblemStats(IpoptProblem ipopt_problem,
+                          Index *num_iters,
                           Number *total_cpu_time,
                           Number *total_sys_time,
                           Number *total_wallclock_time,
@@ -67,7 +62,7 @@ void GetIpoptProblemStats(IpoptProblem ipopt_problem,
   if (ipopt_problem == NULL) {
     return;
   }
-  // *num_iters = ipopt_problem->app->Statistics()->IterationCount();
+  *num_iters = ipopt_problem->app->Statistics()->IterationCount();
   *total_cpu_time = ipopt_problem->app->Statistics()->TotalCpuTime();
   *total_sys_time = ipopt_problem->app->Statistics()->TotalSysTime();
   *total_wallclock_time = ipopt_problem->app->Statistics()->TotalWallclockTime();

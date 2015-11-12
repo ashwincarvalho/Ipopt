@@ -83,13 +83,8 @@ extern "C"
                                              Number *scaled_kkt_error,
                                              Number *kkt_error);
 
-  // IPOPT_EXPORT(void) GetIpoptProblemStats(IpoptProblem ipopt_problem,
-  //                                         Index *num_iters,
-  //                                         Number *total_cpu_time,
-  //                                         Number *total_sys_time,
-  //                                         Number *total_wallclock_time,
-  //                                         Number *obj_val);
   IPOPT_EXPORT(void) GetIpoptProblemStats(IpoptProblem ipopt_problem,
+                                          Index *num_iters,
                                           Number *total_cpu_time,
                                           Number *total_sys_time,
                                           Number *total_wallclock_time,

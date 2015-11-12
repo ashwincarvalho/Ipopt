@@ -5,6 +5,9 @@
  * $Id: hs071_c.c 1996 2011-05-05 19:28:44Z andreasw $
  *
  * Authors:  Carl Laird, Andreas Waechter     IBM    2005-08-17
+ * Modified by: Ashwin Carvalho 2015-11-10
+ *
+ * gcc stats_hs071_c.c -I/Users/Ty/GitHub/Ipopt/build/include/coin -lipopt -I/Users/Ty/GitHub/Ipopt/I -lipoptstats -o test_stats.out
  */
 
 #include "IpStdCInterface.h"
@@ -177,11 +180,9 @@ int main()
     printf("Computed stats successfully\n");
 
     printf("\nComputing solve stats\n");
-    // GetIpoptProblemStats(nlp, &num_iters, &total_cpu_time, &total_sys_time,
-    //                      &total_wallclock_time, &obj_val);
-    GetIpoptProblemStats(nlp, &total_cpu_time, &total_sys_time,
+    GetIpoptProblemStats(nlp, &num_iters, &total_cpu_time, &total_sys_time,
                          &total_wallclock_time, &obj_val);
-    // printf("\tnum_iters = %d\n", num_iters);
+    printf("\tnum_iters = %d\n", num_iters);
     printf("\ttotal_cpu_time = %e\n", total_cpu_time);
     printf("\ttotal_sys_time = %e\n", total_sys_time);
     printf("\ttotal_wallclock_time = %e\n", total_wallclock_time);
