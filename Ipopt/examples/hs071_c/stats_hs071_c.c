@@ -7,7 +7,8 @@
  * Authors:  Carl Laird, Andreas Waechter     IBM    2005-08-17
  * Modified by: Ashwin Carvalho 2015-11-10
  *
- * gcc stats_hs071_c.c -I/Users/Ty/GitHub/Ipopt/build/include/coin -lipopt -I/Users/Ty/GitHub/Ipopt/I -lipoptstats -o test_stats.out
+ * gcc stats_hs071_c.c -I/Users/Ty/GitHub/Ipopt/build/include/coin -lipopt
+        -I/Users/Ty/GitHub/Ipopt/Ipopt/src/Interfaces -lipoptstats -o test_stats.out
  */
 
 #include "IpStdCInterface.h"
@@ -58,6 +59,7 @@ int main()
   Number* g_U = NULL;                  /* upper bounds on g */
   IpoptProblem nlp = NULL;             /* IpoptProblem */
   IpoptProblemStats nlp_stats = NULL;  /* IpoptProblemStats */
+  struct IpoptProblemInfoStats nlp_info;  /* IpoptProblemStats */
   enum ApplicationReturnStatus status; /* Solve return code */
   Number* x = NULL;                    /* starting point and solution vector */
   Number* mult_g = NULL;               /* constraint multipliers
@@ -171,15 +173,25 @@ int main()
     printf("\n\nObjective value\n");
     printf("f(x*) = %e\n", obj);
 
-    printf("\nComputing solve stats\n");
+    printf("\nComputing solve stats (ReturnIpoptProblemStats)\n");
     nlp_stats = ReturnIpoptProblemStats(nlp);
     printf("\tnum_iters = %d\n", nlp_stats->num_iters);
     printf("\ttotal_cpu_time = %e\n", nlp_stats->total_cpu_time);
     printf("\ttotal_sys_time = %e\n", nlp_stats->total_sys_time);
+    printf("\ttotal_wallclock_time = %e\n", nlp_stats->total_wallclock_time);
     printf("\tobj_val = %e\n", nlp_stats->obj_val);
     printf("Computed stats successfully\n");
 
-    printf("\nComputing solve stats\n");
+    printf("\nComputing solve stats (ReturnIpoptProblemInfoStats)\n");
+    nlp_info = ReturnIpoptProblemInfoStats(nlp);
+    printf("\tnum_iters = %d\n", nlp_info.num_iters);
+    printf("\ttotal_cpu_time = %e\n", nlp_info.total_cpu_time);
+    printf("\ttotal_sys_time = %e\n", nlp_info.total_sys_time);
+    printf("\ttotal_wallclock_time = %e\n", nlp_info.total_wallclock_time);
+    printf("\tobj_val = %e\n", nlp_info.obj_val);
+    printf("Computed stats successfully\n");
+
+    printf("\nComputing solve stats (GetIpoptProblemStats)\n");
     GetIpoptProblemStats(nlp, &num_iters, &total_cpu_time, &total_sys_time,
                          &total_wallclock_time, &obj_val);
     printf("\tnum_iters = %d\n", num_iters);

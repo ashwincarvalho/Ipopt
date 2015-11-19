@@ -24,11 +24,13 @@ extern "C"
 {
 #endif
 
+  /** Example solver statistics type (mirrored in Ipopt.jl) **/
   struct IpoptProblemInfoStats
   {
     Index num_iters;
     Number total_cpu_time;
     Number total_sys_time;
+    Number total_wallclock_time;
     Number obj_val;
   };
 
@@ -36,6 +38,9 @@ extern "C"
   typedef struct IpoptProblemInfoStats* IpoptProblemStats;
 
   IPOPT_EXPORT(IpoptProblemStats) ReturnIpoptProblemStats(IpoptProblem ipopt_problem);
+
+  IPOPT_EXPORT(struct IpoptProblemInfoStats)
+      ReturnIpoptProblemInfoStats(IpoptProblem ipopt_problem);
 
   IPOPT_EXPORT(void) GetIpoptProblemStatsAll(IpoptProblem ipopt_problem,
                                              Index *num_iters,

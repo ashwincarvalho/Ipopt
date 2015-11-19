@@ -43,12 +43,31 @@ IpoptProblemStats ReturnIpoptProblemStats(IpoptProblem ipopt_problem)
   if (ipopt_problem == NULL) {
     return NULL;
   }
+
   IpoptProblemStats retval = new IpoptProblemInfoStats;
 
   retval->num_iters = ipopt_problem->app->Statistics()->IterationCount();
   retval->total_cpu_time = ipopt_problem->app->Statistics()->TotalCpuTime();
   retval->total_sys_time = ipopt_problem->app->Statistics()->TotalSysTime();
+  retval->total_wallclock_time = ipopt_problem->app->Statistics()->TotalWallclockTime();
   retval->obj_val = ipopt_problem->app->Statistics()->FinalObjective();
+
+  return retval;
+}
+
+struct IpoptProblemInfoStats ReturnIpoptProblemInfoStats(IpoptProblem ipopt_problem)
+{
+  IpoptProblemInfoStats retval;
+
+  if (ipopt_problem == NULL) {
+    return retval;
+  }
+
+  retval.num_iters = ipopt_problem->app->Statistics()->IterationCount();
+  retval.total_cpu_time = ipopt_problem->app->Statistics()->TotalCpuTime();
+  retval.total_sys_time = ipopt_problem->app->Statistics()->TotalSysTime();
+  retval.total_wallclock_time = ipopt_problem->app->Statistics()->TotalWallclockTime();
+  retval.obj_val = ipopt_problem->app->Statistics()->FinalObjective();
 
   return retval;
 }
